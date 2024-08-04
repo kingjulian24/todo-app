@@ -1,17 +1,16 @@
 import React from "react";
-import TodoItem from "../TodoItem";
 import { useTodoesContext } from "../../hooks/TodoProvider";
+import Todo from "./Todo";
 
-const TodoList = () => {
+const TodoList = ({ onEdit }) => {
   const todos = useTodoesContext();
 
   return (
-    <section className="w-full px-4">
-      <h2 className="mb-2">You have {todos.length} todo(s).</h2>
+    <div className="space-y-4 relative">
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
+        <Todo key={todo.id} todo={todo} onEdit={onEdit} />
       ))}
-    </section>
+    </div>
   );
 };
 
