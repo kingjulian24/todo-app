@@ -35,7 +35,7 @@ const Todo = ({ todo, onEdit }) => {
       />
       <div className="flex-1" onClick={() => onEdit(todo)}>
         <h3 className="font-semibold">{todo.title}</h3>
-        <p className="text-gray-600">{todo.desc}</p>
+        <p className="text-gray-600 truncate max-w-[300px]">{todo.desc}</p>
         <p className="text-gray-400 text-sm">{formatDate(todo.startDate)}</p>
       </div>
       <button className={archiveClass} onClick={handleToggleArchived}>
