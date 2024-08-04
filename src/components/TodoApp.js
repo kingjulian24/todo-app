@@ -15,12 +15,14 @@ const TodoApp = () => {
     showHistory,
     searchQuery,
     filteredTodos,
+    isFilteredByCompleted,
     toggleMenu,
     toggleAddEdit,
     toggleAdding,
     handleEditTodo,
     handleSearch,
     setShowHistory,
+    setIsFilteredByCompleted,
   } = useTodoAppState();
 
   return (
@@ -33,6 +35,8 @@ const TodoApp = () => {
           isMenuOpen={isMenuOpen}
           setShowHistory={setShowHistory}
           showHistory={showHistory}
+          setIsFilteredByCompleted={setIsFilteredByCompleted}
+          isFilteredByCompleted={isFilteredByCompleted}
         />
       </aside>
       <main
