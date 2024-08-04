@@ -11,9 +11,17 @@ const formatDate = (timestamp) => {
 
 const Todo = ({ todo, onEdit }) => {
   const dispatch = useTodoesDispatchContext();
+  const [isArchived, setIsArchived] = React.useState(todo.archived);
+  const handleToggleArchived = () => {
+    setIsArchived(!isArchived);
+    dispatch({ type: ActionTypes.TOGGLE_ARCHIVED, payload: todo.id });
+  };
   const checkClass = todo.completed
     ? "text-green-500 text-xl mr-4"
     : "text-gray-500 text-xl mr-4";
+  const archiveClass = isArchived
+    ? "text-gray-500 text-xl"
+    : "text-green-500 text-xl";
   return (
     <div className="flex items-center bg-white p-4 rounded-lg shadow">
       <FaCheckCircle
@@ -30,7 +38,7 @@ const Todo = ({ todo, onEdit }) => {
         <p className="text-gray-600">{todo.desc}</p>
         <p className="text-gray-400 text-sm">{formatDate(todo.startDate)}</p>
       </div>
-      <button className="text-gray-500 ml-4">
+      <button className={archiveClass} onClick={handleToggleArchived}>
         <FaArchive className="text-xl" />
       </button>
     </div>

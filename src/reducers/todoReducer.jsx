@@ -79,7 +79,7 @@ const todoReducer = (draft, action) => {
       break;
     case ActionTypes.TOGGLE_ARCHIVED:
       const todoToToggleArchived = draft.find(
-        (todo) => todo.id === action.payload.id
+        (todo) => todo.id === action.payload
       );
       if (todoToToggleArchived) {
         todoToToggleArchived.archived = !todoToToggleArchived.archived;

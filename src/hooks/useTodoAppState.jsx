@@ -12,24 +12,25 @@ const useTodoAppState = () => {
   const [filteredTodos, setFilteredTodos] = useState(todos);
 
   useEffect(() => {
+    let updatedTodos = todos;
+
+    // Apply search filter
     if (searchQuery) {
-      const filteredTodos = todos.filter((todo) =>
+      updatedTodos = updatedTodos.filter((todo) =>
         todo.title.toLowerCase().includes(searchQuery.trim().toLowerCase())
       );
-      setFilteredTodos(filteredTodos);
-    } else {
-      setFilteredTodos(todos);
     }
-  }, [todos, searchQuery]);
 
-  useEffect(() => {
+    // Apply completed filter
     if (isFilteredByCompleted) {
-      const filteredTodos = todos.filter((todo) => !todo.completed);
-      setFilteredTodos(filteredTodos);
-    } else {
-      setFilteredTodos(todos);
+      updatedTodos = updatedTodos.filter((todo) => !todo.completed);
     }
-  }, [todos, isFilteredByCompleted]);
+
+    // Apply archived filter
+    updatedTodos = updatedTodos.filter((todo) => todo.archived);
+
+    setFilteredTodos(updatedTodos);
+  }, [todos, searchQuery, isFilteredByCompleted, showHistory]);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const toggleAddEdit = () => setIsAddEditOpen((prev) => !prev);
