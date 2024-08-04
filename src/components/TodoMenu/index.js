@@ -15,7 +15,7 @@ const TodoMenu = ({
 }) => {
   const dispatch = useTodoesDispatchContext();
   const historyTitle = showHistory ? "Hide History" : "Show History";
-  const completedTitle = isFilteredByCompleted ? "Show All" : "Show Completed";
+  const completedTitle = isFilteredByCompleted ? "Show All" : "Hide Completed";
   const handleToggleCompleted = () => {
     setIsFilteredByCompleted((p) => !p);
   };
