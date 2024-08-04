@@ -1,5 +1,7 @@
 import { STATUS } from "../../hooks/useTodoDetailsState";
-const Title = ({ status, title }) => {
+import { FaSpinner } from "react-icons/fa";
+
+const Title = ({ status, title, isSaving }) => {
   const getTitle = () => {
     switch (status) {
       case STATUS.VIEW:
@@ -12,7 +14,16 @@ const Title = ({ status, title }) => {
         return "";
     }
   };
-  return <h2 className="text-xl font-semibold">{getTitle()}</h2>;
+  return (
+    <>
+      <h2 className="text-xl font-semibold">{getTitle()}</h2>
+      {status === STATUS.EDIT && isSaving && (
+        <span className=" text-green-500 text-sm flex items-center">
+          <FaSpinner className="animate-spin mr-1" /> Saving...
+        </span>
+      )}
+    </>
+  );
 };
 
 export default Title;

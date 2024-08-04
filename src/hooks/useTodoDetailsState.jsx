@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTodoesDispatchContext } from "./TodoProvider";
 import { ActionTypes } from "../reducers/todoReducer";
 import { v4 as uuidv4 } from "uuid";
+import useAutoSave from "./useAutoSave";
 
 const resetTodo = (initialTodo) => {
   return {
@@ -33,6 +34,7 @@ const useTodoDetailsState = (onClose, initialTodo) => {
   const [newComment, setNewComment] = useState("");
   const isEditing = Boolean(initialTodo);
   const [status, setStatus] = useState(isEditing ? STATUS.VIEW : STATUS.ADD);
+  const [isSaving, setIsSaving] = useAutoSave(1000);
 
   useEffect(() => {
     if (initialTodo) {
@@ -47,8 +49,9 @@ const useTodoDetailsState = (onClose, initialTodo) => {
         type: ActionTypes.UPDATE,
         payload: todo,
       });
+      setIsSaving(true);
     }
-  }, [todo, dispatch, isEditing]);
+  }, [todo, dispatch, isEditing, setIsSaving]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -135,6 +138,7 @@ const useTodoDetailsState = (onClose, initialTodo) => {
     status,
     handleEditStatus,
     handleTodoDelete,
+    isSaving,
   };
 };
 

@@ -25,12 +25,13 @@ const TodoDetails = ({ onClose, className, initialTodo = null }) => {
     status,
     handleEditStatus,
     handleTodoDelete,
+    isSaving,
   } = useTodoDetailsState(onClose, initialTodo);
 
   return (
     <div className={className}>
       <div className="flex justify-between items-center mb-4">
-        <Title status={status} title={todo.title} />
+        <Title status={status} title={todo.title} isSaving={isSaving} />
         <button onClick={onClose} className="text-gray-500">
           <AiOutlineClose className="text-xl" />
         </button>
