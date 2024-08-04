@@ -6,12 +6,29 @@ import TodoProgress from "./TodoProgress";
 import TodoSearch from "./TodoSearch";
 import AddTodoButton from "./AddTodoButton";
 import ToggleMenuButton from "./ToggleMenuButton";
+import { useTodoesContext } from "../hooks/TodoProvider";
 
 const TodoApp = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAddEditOpen, setIsAddEditOpen] = useState(false);
   const [currentTodo, setCurrentTodo] = useState(null);
   const [showHistory, setShowHistory] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const todos = useTodoesContext();
+  const [filteredTodos, setFilteredTodos] = useState(todos);
+
+  React.useEffect(() => {
+    if (searchQuery) {
+      const filteredTodos = todos.filter((todo) => {
+        return todo.title
+          .toLowerCase()
+          .includes(searchQuery.trim().toLocaleLowerCase());
+      });
+      setFilteredTodos(filteredTodos);
+    } else {
+      setFilteredTodos(todos);
+    }
+  }, [todos, searchQuery]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -31,11 +48,15 @@ const TodoApp = () => {
     setIsAddEditOpen(true);
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
       <aside className="relative w-full lg:w-1/6 bg-white p-4 lg:p-6 lg:min-h-screen">
         <ToggleMenuButton toggleMenu={toggleMenu} />
-        <TodoSearch />
+        <TodoSearch searchQuery={searchQuery} handleSearch={handleSearch} />
         <TodoProgress />
         <TodoMenu
           isMenuOpen={isMenuOpen}
@@ -47,7 +68,7 @@ const TodoApp = () => {
         className={`flex-1 p-4 lg:p-6 relative ${isAddEditOpen ? "lg:w-1/2" : "lg:w-2/3"}`}
       >
         <h1 className="text-2xl font-bold mb-6">Todo List</h1>
-        <TodoList onEdit={handleEditTodo} />
+        <TodoList filteredTodos={filteredTodos} onEdit={handleEditTodo} />
         <AddTodoButton toggleAdding={toggleAdding} />
       </main>
 

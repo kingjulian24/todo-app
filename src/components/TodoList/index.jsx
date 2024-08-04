@@ -1,13 +1,10 @@
 import React from "react";
-import { useTodoesContext } from "../../hooks/TodoProvider";
 import Todo from "./Todo";
 
-const TodoList = ({ onEdit }) => {
-  const todos = useTodoesContext();
-
+const TodoList = ({ filteredTodos, onEdit }) => {
   return (
     <div className="space-y-4 relative">
-      {todos.map((todo) => (
+      {filteredTodos.map((todo) => (
         <Todo key={todo.id} todo={todo} onEdit={onEdit} />
       ))}
     </div>
