@@ -37,6 +37,7 @@ const useTodoDetailsState = (onClose, initialTodo) => {
   useEffect(() => {
     if (initialTodo) {
       setTodo(initialTodo);
+      setStatus(STATUS.VIEW);
     }
   }, [initialTodo]);
 
