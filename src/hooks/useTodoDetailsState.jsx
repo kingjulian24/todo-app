@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTodoesDispatchContext } from "./TodoProvider";
 import { ActionTypes } from "../reducers/todoReducer";
 import { v4 as uuidv4 } from "uuid";
@@ -40,18 +40,14 @@ const useTodoDetailsState = (onClose, initialTodo) => {
     }
   }, [initialTodo]);
 
-  const updateTodo = React.useCallback(() => {
-    dispatch({
-      type: ActionTypes.UPDATE,
-      payload: todo,
-    });
-  }, [dispatch, todo]);
-
   useEffect(() => {
     if (todo && isEditing) {
-      updateTodo();
+      dispatch({
+        type: ActionTypes.UPDATE,
+        payload: todo,
+      });
     }
-  }, [todo, updateTodo, isEditing]);
+  }, [todo, dispatch, isEditing]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -114,10 +110,7 @@ const useTodoDetailsState = (onClose, initialTodo) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (initialTodo) {
-      updateTodo();
-      //onClose();
-    } else {
+    if (todo) {
       dispatch({
         type: ActionTypes.ADD,
         payload: todo,
