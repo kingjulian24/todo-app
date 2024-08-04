@@ -32,6 +32,10 @@ const TodoMenu = ({
     dispatch({ type: ActionTypes.ARCHIVE_ALL });
   };
 
+  const handleArchiveCompleted = () => {
+    dispatch({ type: ActionTypes.ARCHIVE_COMPLETED });
+  };
+
   return (
     <nav
       className={`space-y-2 lg:block ${isMenuOpen ? "block" : "hidden"} mt-4 border-b-gray-300 border-b-2 lg:pb-4`}
@@ -46,7 +50,11 @@ const TodoMenu = ({
         title={historyTitle}
         onClick={handleToggleHistory}
       />
-      <MenuItem Icon={IoArchiveOutline} title="Archive Completed" />
+      <MenuItem
+        Icon={IoArchiveOutline}
+        title="Archive Completed"
+        onClick={handleArchiveCompleted}
+      />
       <MenuItem
         Icon={FaArchive}
         title="Archive All"
