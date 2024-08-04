@@ -16,11 +16,11 @@ const TodoMenu = ({
   const dispatch = useTodoesDispatchContext();
   const historyTitle = showHistory ? "Hide History" : "Show History";
   const completedTitle = isFilteredByCompleted ? "Show All" : "Show Completed";
-  const handleCompleted = () => {
+  const handleToggleCompleted = () => {
     setIsFilteredByCompleted((p) => !p);
   };
 
-  const handleHistory = () => {
+  const handleToggleHistory = () => {
     setShowHistory((p) => !p);
   };
 
@@ -35,9 +35,13 @@ const TodoMenu = ({
       <MenuItem
         Icon={FaRegCircle}
         title={completedTitle}
-        onClick={handleCompleted}
+        onClick={handleToggleCompleted}
       />
-      <MenuItem Icon={GoHistory} title={historyTitle} onClick={handleHistory} />
+      <MenuItem
+        Icon={GoHistory}
+        title={historyTitle}
+        onClick={handleToggleHistory}
+      />
       <MenuItem Icon={IoArchiveOutline} title="Archive Completed" />
       <MenuItem Icon={FaArchive} title="Archive All" />
       <MenuItem
