@@ -10,6 +10,7 @@ const TodoInputSearch = ({ searchQuery, handleSearch }) => {
         className="w-full pl-10 pr-4 py-2 border rounded-lg"
         value={searchQuery}
         onChange={handleSearch}
+        name="search"
       />
       <CiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
     </div>

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useTodoesDispatchContext } from "./TodoProvider";
 import { ActionTypes } from "../reducers/todoReducer";
+import { v4 as uuidv4 } from "uuid";
 
 const resetTodo = (initialTodo) => {
   return {
-    id: initialTodo?.id || Date.now(),
+    id: initialTodo?.id || uuidv4(),
     title: "",
     completed: false,
     startDate: Date.now(),
