@@ -27,10 +27,10 @@ const useTodoAppState = () => {
     }
 
     // Apply archived filter
-    updatedTodos = updatedTodos.filter((todo) => todo.archived);
+    updatedTodos = updatedTodos.filter((todo) => !todo.archived);
 
     if (showHistory) {
-      updatedTodos = todos.filter((todo) => !todo.archived);
+      updatedTodos = todos.filter((todo) => todo.archived);
     }
 
     setFilteredTodos(updatedTodos);

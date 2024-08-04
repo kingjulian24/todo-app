@@ -21,6 +21,7 @@ export const ActionTypes = {
   ADD: "ADD",
   DELETE: "DELETE",
   UPDATE: "UPDATE",
+  ARCHIVE_ALL: "ARCHIVE_ALL",
   TOGGLE_COMPLETED: "TOGGLE_COMPLETED",
   TOGGLE_ARCHIVED: "TOGGLE_ARCHIVED",
   FILTER_BY_COMPLETED: "FILTER_BY_COMPLETED",
@@ -84,6 +85,9 @@ const todoReducer = (draft, action) => {
       if (todoToToggleArchived) {
         todoToToggleArchived.archived = !todoToToggleArchived.archived;
       }
+      break;
+    case ActionTypes.ARCHIVE_ALL:
+      draft.forEach((todo) => (todo.archived = true));
       break;
     case ActionTypes.FILTER_BY_COMPLETED:
       return draft.filter(

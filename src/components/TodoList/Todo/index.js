@@ -20,8 +20,8 @@ const Todo = ({ todo, onEdit }) => {
     ? "text-green-500 text-xl mr-4"
     : "text-gray-500 text-xl mr-4";
   const archiveClass = isArchived
-    ? "text-gray-500 text-xl"
-    : "text-green-500 text-xl";
+    ? "text-green-500 text-xl"
+    : "text-gray-500 text-xl";
   return (
     <div className="flex items-center bg-white p-4 rounded-lg shadow">
       <FaCheckCircle

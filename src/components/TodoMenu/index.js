@@ -28,6 +28,10 @@ const TodoMenu = ({
     dispatch({ type: ActionTypes.DELETE_ALL });
   };
 
+  const handleArchiveAll = () => {
+    dispatch({ type: ActionTypes.ARCHIVE_ALL });
+  };
+
   return (
     <nav
       className={`space-y-2 lg:block ${isMenuOpen ? "block" : "hidden"} mt-4 border-b-gray-300 border-b-2 lg:pb-4`}
@@ -43,7 +47,11 @@ const TodoMenu = ({
         onClick={handleToggleHistory}
       />
       <MenuItem Icon={IoArchiveOutline} title="Archive Completed" />
-      <MenuItem Icon={FaArchive} title="Archive All" />
+      <MenuItem
+        Icon={FaArchive}
+        title="Archive All"
+        onClick={handleArchiveAll}
+      />
       <MenuItem
         Icon={FaTrashAlt}
         title="Delete All"
