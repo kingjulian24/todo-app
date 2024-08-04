@@ -24,6 +24,7 @@ const TodoDetails = ({ onClose, className, initialTodo = null }) => {
     setNewComment,
     status,
     handleEditStatus,
+    handleTodoDelete,
   } = useTodoDetailsState(onClose, initialTodo);
 
   return (
@@ -70,6 +71,8 @@ const TodoDetails = ({ onClose, className, initialTodo = null }) => {
           handleCommentRemove={handleCommentRemove}
           setNewComment={setNewComment}
           newComment={newComment}
+          handleTodoDelete={handleTodoDelete}
+          status={status}
         />
       )}
     </div>
@@ -88,6 +91,8 @@ function TodoUpdateForm({
   handleCommentRemove,
   setNewComment,
   newComment,
+  handleTodoDelete,
+  status,
 }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -109,12 +114,23 @@ function TodoUpdateForm({
         newComment={newComment}
       />
       <TodoCheckBox todo={todo} handleChange={handleChange} />
-      <button
-        type="submit"
-        className="w-full  bg-green-500 text-white px-4 py-2 rounded"
-      >
-        Save
-      </button>
+      {status === STATUS.EDIT ? (
+        <button
+          onClick={() => {
+            handleTodoDelete(todo.id);
+          }}
+          className="w-full  bg-red-500 text-white px-4 py-2 rounded"
+        >
+          Delete
+        </button>
+      ) : (
+        <button
+          type="submit"
+          className="w-full  bg-green-500 text-white px-4 py-2 rounded"
+        >
+          Save
+        </button>
+      )}
     </form>
   );
 }

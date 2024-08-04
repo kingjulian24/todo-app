@@ -78,7 +78,15 @@ const useTodoDetailsState = (onClose, initialTodo) => {
     }));
   };
 
-  const handleCommentAdd = () => {
+  const handleTodoDelete = () => {
+    dispatch({
+      type: ActionTypes.DELETE,
+      payload: todo.id,
+    });
+    onClose();
+  };
+
+  function handleCommentAdd() {
     if (newComment) {
       const comment = {
         id: uuidv4(),
@@ -91,7 +99,7 @@ const useTodoDetailsState = (onClose, initialTodo) => {
       }));
       setNewComment("");
     }
-  };
+  }
 
   const handleCommentRemove = (commentId) => {
     setTodo((prevTodo) => ({
@@ -132,6 +140,7 @@ const useTodoDetailsState = (onClose, initialTodo) => {
     setNewComment,
     status,
     handleEditStatus,
+    handleTodoDelete,
   };
 };
 

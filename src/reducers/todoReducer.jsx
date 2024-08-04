@@ -37,7 +37,7 @@ const todoReducer = (draft, action) => {
       draft.push(action.payload);
       break;
     case ActionTypes.DELETE:
-      return draft.filter((todo) => todo.id !== action.payload.id);
+      return draft.filter((todo) => todo.id !== action.payload);
     case ActionTypes.UPDATE:
       const {
         id,
