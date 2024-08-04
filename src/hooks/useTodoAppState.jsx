@@ -14,6 +14,13 @@ const useTodoAppState = () => {
   useEffect(() => {
     let updatedTodos = todos;
 
+    // Apply archived filter
+    if (showHistory) {
+      updatedTodos = updatedTodos.filter((todo) => todo.archived);
+    } else {
+      updatedTodos = updatedTodos.filter((todo) => !todo.archived);
+    }
+
     // Apply search filter
     if (searchQuery) {
       updatedTodos = updatedTodos.filter((todo) =>
@@ -26,12 +33,8 @@ const useTodoAppState = () => {
       updatedTodos = updatedTodos.filter((todo) => !todo.completed);
     }
 
-    // Apply archived filter
-    updatedTodos = updatedTodos.filter((todo) => !todo.archived);
-
-    if (showHistory) {
-      updatedTodos = todos.filter((todo) => todo.archived);
-    }
+    // Sort by completed status: true (completed) comes after false (not completed)
+    updatedTodos.sort((a, b) => a.completed - b.completed);
 
     setFilteredTodos(updatedTodos);
   }, [todos, searchQuery, isFilteredByCompleted, showHistory]);
