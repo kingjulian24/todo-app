@@ -10,22 +10,6 @@ const TodoComments = ({
 }) => {
   return (
     <div>
-      <div className="flex space-x-2 mb-2">
-        <input
-          type="text"
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Add a comment"
-          className="flex-grow p-2 border rounded"
-        />
-        <button
-          type="button"
-          onClick={handleCommentAdd}
-          className="bg-green-500 text-white px-4 py-2 rounded"
-        >
-          <FaPlus />
-        </button>
-      </div>
       <div className="space-y-2">
         {todo.comments.map((comment) => (
           <TodoComment
@@ -35,8 +19,35 @@ const TodoComments = ({
           />
         ))}
       </div>
+
+      <TodoCommentInput
+        newComment={newComment}
+        setNewComment={setNewComment}
+        handleCommentAdd={handleCommentAdd}
+      />
     </div>
   );
 };
 
 export default TodoComments;
+
+function TodoCommentInput({ newComment, setNewComment, handleCommentAdd }) {
+  return (
+    <div className="flex space-x-2 mb-2 mt-2">
+      <input
+        type="text"
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+        placeholder="Add a comment"
+        className="flex-grow p-2 border rounded"
+      />
+      <button
+        type="button"
+        onClick={handleCommentAdd}
+        className="bg-green-500 text-white px-4 py-2 rounded"
+      >
+        <FaPlus />
+      </button>
+    </div>
+  );
+}
