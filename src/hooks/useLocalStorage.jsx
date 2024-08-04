@@ -16,7 +16,6 @@ const useLocalStorage = (reducer, init, key) => {
   const [storedValue, dispatch] = useImmerReducer(reducer, init, initializer);
 
   React.useEffect(() => {
-    console.log("updating local storage with", JSON.stringify(storedValue));
     if (!localStorage) return;
     try {
       localStorage.setItem(key, JSON.stringify(storedValue));
