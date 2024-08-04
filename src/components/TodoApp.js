@@ -6,51 +6,23 @@ import TodoProgress from "./TodoProgress";
 import TodoSearch from "./TodoSearch";
 import AddTodoButton from "./AddTodoButton";
 import ToggleMenuButton from "./ToggleMenuButton";
-import { useTodoesContext } from "../hooks/TodoProvider";
+import useTodoAppState from "../hooks/useTodoAppState";
 
 const TodoApp = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAddEditOpen, setIsAddEditOpen] = useState(false);
-  const [currentTodo, setCurrentTodo] = useState(null);
-  const [showHistory, setShowHistory] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const todos = useTodoesContext();
-  const [filteredTodos, setFilteredTodos] = useState(todos);
-
-  React.useEffect(() => {
-    if (searchQuery) {
-      const filteredTodos = todos.filter((todo) => {
-        return todo.title
-          .toLowerCase()
-          .includes(searchQuery.trim().toLocaleLowerCase());
-      });
-      setFilteredTodos(filteredTodos);
-    } else {
-      setFilteredTodos(todos);
-    }
-  }, [todos, searchQuery]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleAddEdit = () => {
-    setIsAddEditOpen(!isAddEditOpen);
-  };
-
-  const toggleAdding = () => {
-    setCurrentTodo(null);
-    toggleAddEdit();
-  };
-
-  const handleEditTodo = (todo) => {
-    setCurrentTodo(todo);
-    setIsAddEditOpen(true);
-  };
-
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  const {
+    isMenuOpen,
+    isAddEditOpen,
+    currentTodo,
+    showHistory,
+    searchQuery,
+    filteredTodos,
+    toggleMenu,
+    toggleAddEdit,
+    toggleAdding,
+    handleEditTodo,
+    handleSearch,
+    setShowHistory,
+  } = useTodoAppState();
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
