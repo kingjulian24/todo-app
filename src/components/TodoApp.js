@@ -26,6 +26,8 @@ const TodoApp = () => {
     setIsFilteredByCompleted,
     setSelectedTagIds,
     selectedTagIds,
+    sortPriority,
+    setSortPriority,
   } = useTodoAppState();
 
   return (
@@ -40,6 +42,8 @@ const TodoApp = () => {
           showHistory={showHistory}
           setIsFilteredByCompleted={setIsFilteredByCompleted}
           isFilteredByCompleted={isFilteredByCompleted}
+          sortPriority={sortPriority}
+          setSortPriority={setSortPriority}
         />
         <AllTagsList
           filteredTodos={filteredTodos}
