@@ -24,15 +24,18 @@ const Todo = ({ todo, onEdit }) => {
     : "text-gray-500 text-xl";
   return (
     <div className="flex items-center bg-white p-4 rounded-lg shadow">
-      <FaCheckCircle
-        className={checkClass}
-        onClick={() => {
-          dispatch({
-            type: ActionTypes.TOGGLE_COMPLETED,
-            payload: { id: todo.id },
-          });
-        }}
-      />
+      <button>
+        <FaCheckCircle
+          className={checkClass}
+          onClick={() => {
+            dispatch({
+              type: ActionTypes.TOGGLE_COMPLETED,
+              payload: { id: todo.id },
+            });
+          }}
+        />
+      </button>
+
       <div className="flex-1" onClick={() => onEdit(todo)}>
         <h3 className="font-semibold">{todo.title}</h3>
         <p className="text-gray-600 truncate max-w-[300px]">{todo.desc}</p>
