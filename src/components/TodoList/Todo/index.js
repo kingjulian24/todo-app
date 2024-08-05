@@ -2,6 +2,7 @@ import React from "react";
 import { FaCheckCircle, FaArchive } from "react-icons/fa";
 import { useTodoesDispatchContext } from "../../../hooks/TodoProvider";
 import { ActionTypes } from "../../../reducers/todoReducer";
+import PriorityIcon from "./PriorityIcon";
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
@@ -37,7 +38,13 @@ const Todo = ({ todo, onEdit }) => {
       </button>
 
       <div className="flex-1" onClick={() => onEdit(todo)}>
-        <h3 className="font-semibold">{todo.title}</h3>
+        <div className="flex">
+          <h3 className="font-semibold">{todo.title}</h3>
+          <span className="pl-1">
+            <PriorityIcon priority={todo.priority} />
+          </span>
+        </div>
+
         <p className="text-gray-600 truncate max-w-[300px]">{todo.desc}</p>
         <p className="text-gray-400 text-sm">{formatDate(todo.startDate)}</p>
       </div>
