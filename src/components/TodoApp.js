@@ -7,6 +7,7 @@ import AddTodoButton from "./AddTodoButton";
 import ToggleMenuButton from "./ToggleMenuButton";
 import useTodoAppState from "../hooks/useTodoAppState";
 import AllTagsList from "./TodoDetails/TodoTags/AllTags";
+import CallToAction from "./CallToAction";
 
 const TodoApp = () => {
   const {
@@ -56,6 +57,8 @@ const TodoApp = () => {
       >
         <h1 className="text-2xl font-bold mb-6">Todo List</h1>
         <TodoList filteredTodos={filteredTodos} onEdit={handleEditTodo} />
+        {filteredTodos.length === 0 && <CallToAction />}
+
         <AddTodoButton toggleAdding={toggleAdding} />
       </main>
 
