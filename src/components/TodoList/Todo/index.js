@@ -45,7 +45,9 @@ const Todo = ({ todo, onEdit }) => {
           </span>
         </div>
 
-        <p className="text-gray-600 truncate max-w-[300px]">{todo.desc}</p>
+        <p className="text-gray-600 truncate w-[250px] lg:w-[600px]">
+          {todo.desc}
+        </p>
         <p className="text-gray-400 text-sm">{formatDate(todo.startDate)}</p>
       </div>
       <button className={archiveClass} onClick={handleToggleArchived}>
