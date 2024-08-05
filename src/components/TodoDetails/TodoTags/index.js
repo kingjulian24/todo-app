@@ -24,7 +24,12 @@ const TodoTags = ({
       </div>
       <div className="flex flex-wrap gap-2">
         {todo.tags.map((tag) => (
-          <TodoTag key={uuidv4()} tag={tag} handleTagRemove={handleTagRemove} />
+          <TodoTag
+            key={uuidv4()}
+            tag={tag}
+            handleTagRemove={handleTagRemove}
+            status={status}
+          />
         ))}
       </div>
     </div>
