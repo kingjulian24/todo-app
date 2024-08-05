@@ -55,7 +55,7 @@ const TodoApp = () => {
       <main
         className={`flex-1 p-4 lg:p-6 relative ${isAddEditOpen ? "lg:w-1/2" : "lg:w-2/3"}`}
       >
-        <h1 className="text-2xl font-bold mb-6">Todo List</h1>
+        <h1 className="text-2xl font-bold mb-6 hidden">TODO LIST</h1>
         <TodoList filteredTodos={filteredTodos} onEdit={handleEditTodo} />
         {filteredTodos.length === 0 && <CallToAction />}
 
