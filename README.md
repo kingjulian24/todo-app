@@ -1,6 +1,48 @@
-# Getting Started with Create React App
+# Todo App
+
+A modern, feature-rich todo list application built with React.
+
+## ScreenShots
+
+<img src="assets/screenshots/Screenshot 2024-08-05 at 3.21.00 PM.png" alt="Desktop Mode" width="600" />
+<img src="assets/screenshots/Screenshot 2024-08-05 at 3.21.16 PM.png" alt="Desktop Mode" width="600" />
+<img src="assets/screenshots/Screenshot 2024-08-05 at 3.22.23 PM.png" alt="Mobile Mode" width="200" />
+
+## Features
+
+- Add, edit, and delete tasks
+- Mark tasks as completed
+- Sort tasks by priority
+- Hide completed tasks
+- Show task history
+- Archive completed tasks
+- Delete all tasks
+- Tag system for categorizing tasks
+- Progress indicator
+- Search functionality
+
+## Technologies Used
+
+- React 18.3.1
+- TypeScript 4.9.5
+- Tailwind CSS 3.4.7
+- react-icons 5.2.1
+- use-immer 0.10.0
+- uuid 10.0.0
+
+## Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Start the development server:
+   ```
+   npm start
+   ```
 
 ## Available Scripts
 
@@ -68,3 +110,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Created using Create React App
+- Icons provided by react-icons
+- Styling powered by Tailwind CSS
