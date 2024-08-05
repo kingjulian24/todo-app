@@ -3,8 +3,10 @@ import { useTodoesContext } from "../../hooks/TodoProvider";
 
 const TodoProgress = () => {
   const todos = useTodoesContext();
-  const completedTodos = todos.filter((todo) => todo.completed).length;
-  const totalTodos = todos.length;
+  const completedTodos = todos.filter(
+    (todo) => todo.completed && !todo.archived
+  ).length;
+  const totalTodos = todos.filter((todo) => !todo.archived).length;
   const progress = Math.floor((completedTodos / totalTodos) * 100);
   const percentage = isNaN(progress) ? 100 : progress;
   const backgroundColor =
