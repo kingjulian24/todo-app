@@ -10,9 +10,18 @@ const useTodoAppState = () => {
   const [isFilteredByCompleted, setIsFilteredByCompleted] = useState(false);
   const todos = useTodoesContext();
   const [filteredTodos, setFilteredTodos] = useState(todos);
+  const [selectedTagIds, setSelectedTagIds] = useState([]);
 
   useEffect(() => {
     let updatedTodos = todos;
+
+    if (selectedTagIds.length) {
+      updatedTodos = updatedTodos.filter((todo) => {
+        return selectedTagIds.some((tagId) =>
+          todo.tags.some((tag) => tag.id === tagId)
+        );
+      });
+    }
 
     // Apply archived filter
     if (showHistory) {
@@ -37,7 +46,7 @@ const useTodoAppState = () => {
     updatedTodos.sort((a, b) => a.completed - b.completed);
 
     setFilteredTodos(updatedTodos);
-  }, [todos, searchQuery, isFilteredByCompleted, showHistory]);
+  }, [todos, searchQuery, isFilteredByCompleted, showHistory, selectedTagIds]);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const toggleAddEdit = () => setIsAddEditOpen((prev) => !prev);
@@ -68,6 +77,8 @@ const useTodoAppState = () => {
     handleSearch,
     setShowHistory,
     setIsFilteredByCompleted,
+    setSelectedTagIds,
+    selectedTagIds,
   };
 };
 

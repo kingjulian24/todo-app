@@ -1,22 +1,3 @@
-// const comment = {
-//   id: 1,
-//   text: "This is a comment",
-//   date: Date.now(),
-// };
-
-// const todo = {
-//   id: 1,
-//   title: "Buy milk",
-//   completed: false,
-//   startDate: Date.now,
-//   endDate: null,
-//   priority: "low",
-//   tags: ["shopping", "groceries"],
-//   comments: [],
-//   desc: "",
-//   archived: false,
-//   options: {}
-// };
 export const ActionTypes = {
   ADD: "ADD",
   DELETE: "DELETE",
@@ -112,3 +93,27 @@ const todoReducer = (draft, action) => {
   }
 };
 export default todoReducer;
+// const comment = {
+//   id: 1,
+//   text: "This is a comment",
+//   date: Date.now(),
+// };
+
+// const tag = {
+//   id: 1,
+//   name: "tag1",
+// }
+
+// const todo = {
+//   id: 1,
+//   title: "Buy milk",
+//   completed: false,
+//   startDate: Date.now,
+//   endDate: null,
+//   priority: "low",
+//   tags: [],
+//   comments: [],
+//   desc: "",
+//   archived: false,
+//   options: {}
+// };

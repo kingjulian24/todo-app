@@ -9,7 +9,13 @@ import TodoComments from "./TodoComments";
 import TodoCheckBox from "./TodoCheckBox";
 import { STATUS } from "../../hooks/useTodoDetailsState";
 
-const TodoDetails = ({ onClose, className, initialTodo = null }) => {
+const TodoDetails = ({
+  onClose,
+  className,
+  setSelectedTagIds,
+  selectedTagIds,
+  initialTodo = null,
+}) => {
   const {
     handleChange,
     handleCommentAdd,
@@ -39,7 +45,12 @@ const TodoDetails = ({ onClose, className, initialTodo = null }) => {
       {status === STATUS.VIEW ? (
         <div className="space-y-4">
           <TodoDescription todo={todo} status={status} />
-          <TodoTags todo={todo} status={status} />
+          <TodoTags
+            todo={todo}
+            status={status}
+            setSelectedTagIds={setSelectedTagIds}
+            selectedTagIds={selectedTagIds}
+          />
           <TodoComments
             todo={todo}
             handleCommentAdd={handleCommentAdd}
@@ -74,6 +85,8 @@ const TodoDetails = ({ onClose, className, initialTodo = null }) => {
           newComment={newComment}
           handleTodoDelete={handleTodoDelete}
           status={status}
+          setSelectedTagIds={setSelectedTagIds}
+          selectedTagIds={selectedTagIds}
         />
       )}
     </div>
@@ -94,6 +107,8 @@ function TodoUpdateForm({
   newComment,
   handleTodoDelete,
   status,
+  setSelectedTagIds,
+  selectedTagIds,
 }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -106,6 +121,8 @@ function TodoUpdateForm({
         handleTagRemove={handleTagRemove}
         handleTagAdd={handleTagAdd}
         newTag={newTag}
+        setSelectedTagIds={setSelectedTagIds}
+        selectedTagIds={selectedTagIds}
       />
       <TodoComments
         todo={todo}

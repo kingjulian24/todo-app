@@ -1,6 +1,5 @@
 import { FaPlus } from "react-icons/fa";
 import TodoTag from "./TodoTag";
-import { v4 as uuidv4 } from "uuid";
 import { STATUS } from "../../../hooks/useTodoDetailsState";
 
 const TodoTags = ({
@@ -10,6 +9,8 @@ const TodoTags = ({
   handleTagAdd,
   handleTagRemove,
   status,
+  setSelectedTagIds,
+  selectedTagIds,
 }) => {
   return (
     <div>
@@ -25,10 +26,12 @@ const TodoTags = ({
       <div className="flex flex-wrap gap-2">
         {todo.tags.map((tag) => (
           <TodoTag
-            key={uuidv4()}
+            key={tag.id}
             tag={tag}
             handleTagRemove={handleTagRemove}
             status={status}
+            setSelectedTagIds={setSelectedTagIds}
+            selectedTagIds={selectedTagIds}
           />
         ))}
       </div>

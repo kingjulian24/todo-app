@@ -6,6 +6,7 @@ import TodoSearch from "./TodoSearch";
 import AddTodoButton from "./AddTodoButton";
 import ToggleMenuButton from "./ToggleMenuButton";
 import useTodoAppState from "../hooks/useTodoAppState";
+import AllTagsList from "./TodoDetails/TodoTags/AllTags";
 
 const TodoApp = () => {
   const {
@@ -23,6 +24,8 @@ const TodoApp = () => {
     handleSearch,
     setShowHistory,
     setIsFilteredByCompleted,
+    setSelectedTagIds,
+    selectedTagIds,
   } = useTodoAppState();
 
   return (
@@ -38,6 +41,11 @@ const TodoApp = () => {
           setIsFilteredByCompleted={setIsFilteredByCompleted}
           isFilteredByCompleted={isFilteredByCompleted}
         />
+        <AllTagsList
+          filteredTodos={filteredTodos}
+          selectedTagIds={selectedTagIds}
+          setSelectedTagIds={setSelectedTagIds}
+        />
       </aside>
       <main
         className={`flex-1 p-4 lg:p-6 relative ${isAddEditOpen ? "lg:w-1/2" : "lg:w-2/3"}`}
@@ -52,6 +60,8 @@ const TodoApp = () => {
           onClose={toggleAddEdit}
           initialTodo={currentTodo}
           className={`bg-white p-4 lg:p-6 ${isAddEditOpen ? "fixed inset-0 z-30 lg:static lg:w-1/2" : "hidden"}`}
+          setSelectedTagIds={setSelectedTagIds}
+          selectedTagIds={selectedTagIds}
         />
       )}
     </div>

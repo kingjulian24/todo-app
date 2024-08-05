@@ -62,19 +62,20 @@ const useTodoDetailsState = (onClose, initialTodo) => {
   };
 
   const handleTagAdd = () => {
-    if (newTag && !todo.tags.includes(newTag)) {
+    if (newTag && !todo.tags.some((tag) => tag.name === newTag)) {
+      const newTagObject = { id: uuidv4(), name: newTag }; // Create a new tag object with an ID
       setTodo((prevTodo) => ({
         ...prevTodo,
-        tags: [...prevTodo.tags, newTag],
+        tags: [...prevTodo.tags, newTagObject],
       }));
-      setNewTag("");
+      setNewTag(""); // Clear the input field
     }
   };
 
-  const handleTagRemove = (tagToRemove) => {
+  const handleTagRemove = (tagId) => {
     setTodo((prevTodo) => ({
       ...prevTodo,
-      tags: prevTodo.tags.filter((tag) => tag !== tagToRemove),
+      tags: prevTodo.tags.filter((tag) => tag.id !== tagId),
     }));
   };
 
