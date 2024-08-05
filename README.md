@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/340a35c1-e3bc-4d19-9a97-2e245745c4af/deploy-status)](https://app.netlify.com/sites/jb-dev-todo-app/deploys)
+
 # Todo App
 
 A modern, feature-rich todo list application built with React.
