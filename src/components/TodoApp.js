@@ -33,7 +33,7 @@ const TodoApp = () => {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
-      <aside className="relative w-full lg:w-1/4 2xl:w-1/6 bg-white p-4 lg:p-6 lg:min-h-screen">
+      <aside className="relative w-full lg:w-1/4 2xl:w-1/6 z-10 bg-white p-4 lg:p-6 lg:min-h-screen">
         <ToggleMenuButton toggleMenu={toggleMenu} />
         <TodoSearch searchQuery={searchQuery} handleSearch={handleSearch} />
         <TodoProgress />
@@ -59,7 +59,10 @@ const TodoApp = () => {
         <TodoList filteredTodos={filteredTodos} onEdit={handleEditTodo} />
         {filteredTodos.length === 0 && <CallToAction />}
 
-        <AddTodoButton toggleAdding={toggleAdding} />
+        <AddTodoButton
+          toggleAdding={toggleAdding}
+          shouldPulse={filteredTodos.length === 0}
+        />
       </main>
 
       {isAddEditOpen && (
