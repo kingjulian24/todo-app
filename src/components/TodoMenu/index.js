@@ -3,30 +3,21 @@ import { FaRegCircle, FaArchive, FaTrashAlt } from "react-icons/fa";
 import { GoHistory } from "react-icons/go";
 import { IoArchiveOutline } from "react-icons/io5";
 import MenuItem from "./MenuItem";
-import { useTodoesDispatchContext } from "../../hooks/TodoProvider";
+import {
+  useTodoesContext,
+  useTodoesDispatchContext,
+} from "../../hooks/TodoProvider";
 import { ActionTypes } from "../../reducers/todoReducer";
 import SortPriorityIcon from "./SortPriorityIcon";
-import { PRIORITY_SORT } from "../../hooks/useTodoAppState";
+import { PRIORITY_SORT } from "../../hooks/useTodoMenu";
+import useTodoMenu from "../../hooks/useTodoMenu";
 
-const TodoMenu = ({
-  isMenuOpen,
-  setShowHistory,
-  showHistory,
-  isFilteredByCompleted,
-  setIsFilteredByCompleted,
-  sortPriority,
-  setSortPriority,
-}) => {
+const TodoMenu = ({ isMenuOpen, setFilteredTodos }) => {
+  const todos = useTodoesContext();
+  const { state, actions } = useTodoMenu(todos, setFilteredTodos);
   const dispatch = useTodoesDispatchContext();
-  const historyTitle = showHistory ? "Hide History" : "Show History";
-  const completedTitle = isFilteredByCompleted ? "Show All" : "Hide Completed";
-  const handleToggleCompleted = () => {
-    setIsFilteredByCompleted((p) => !p);
-  };
-
-  const handleToggleHistory = () => {
-    setShowHistory((p) => !p);
-  };
+  const historyTitle = state.filterArchived ? "Hide History" : "Show History";
+  const completedTitle = state.filterCompleted ? "Show All" : "Hide Completed";
 
   const handleDeleteAll = () => {
     dispatch({ type: ActionTypes.DELETE_ALL });
@@ -40,13 +31,13 @@ const TodoMenu = ({
     dispatch({ type: ActionTypes.ARCHIVE_COMPLETED });
   };
 
-  const handleSortByPriority = () => {
-    if (sortPriority === PRIORITY_SORT.NONE) {
-      setSortPriority(PRIORITY_SORT.DESC);
-    } else if (sortPriority === PRIORITY_SORT.ASC) {
-      setSortPriority(PRIORITY_SORT.DESC);
-    } else if (sortPriority === PRIORITY_SORT.DESC) {
-      setSortPriority(PRIORITY_SORT.ASC);
+  const handleSortPriority = () => {
+    if (state.sortPriority === PRIORITY_SORT.NONE) {
+      actions.setSortPriority(PRIORITY_SORT.DESC);
+    } else if (state.sortPriority === PRIORITY_SORT.ASC) {
+      actions.setSortPriority(PRIORITY_SORT.DESC);
+    } else if (state.sortPriority === PRIORITY_SORT.DESC) {
+      actions.setSortPriority(PRIORITY_SORT.ASC);
     }
   };
 
@@ -57,14 +48,14 @@ const TodoMenu = ({
       <MenuItem
         Icon={false}
         title="Sort by priority"
-        onClick={handleSortByPriority}
+        onClick={handleSortPriority}
       >
-        <SortPriorityIcon sortpriority={sortPriority} />
+        <SortPriorityIcon sortPriority={state.sortPriority} />
       </MenuItem>
-      <MenuItem title={completedTitle} onClick={handleToggleCompleted}>
+      <MenuItem title={completedTitle} onClick={actions.toggleFilterCompleted}>
         <FaRegCircle />
       </MenuItem>
-      <MenuItem title={historyTitle} onClick={handleToggleHistory}>
+      <MenuItem title={historyTitle} onClick={actions.toggleFilterArchived}>
         <GoHistory />
       </MenuItem>
       <MenuItem title="Archive Completed" onClick={handleArchiveCompleted}>

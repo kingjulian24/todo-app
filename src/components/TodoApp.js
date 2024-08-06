@@ -14,40 +14,26 @@ const TodoApp = () => {
     isMenuOpen,
     isAddEditOpen,
     currentTodo,
-    showHistory,
     searchQuery,
     filteredTodos,
-    isFilteredByCompleted,
+    selectedTagIds,
     toggleMenu,
     toggleAddEdit,
     toggleAdding,
     handleEditTodo,
     handleSearch,
-    setShowHistory,
-    setIsFilteredByCompleted,
     setSelectedTagIds,
-    selectedTagIds,
-    sortPriority,
-    setSortPriority,
+    setFilteredTodos,
   } = useTodoAppState();
 
   const hasTodos = filteredTodos.length !== 0;
-
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
       <aside className="relative w-full lg:w-1/4 2xl:w-1/6 z-10 bg-white p-4 lg:p-6 lg:min-h-screen">
         <ToggleMenuButton toggleMenu={toggleMenu} />
         <TodoSearch searchQuery={searchQuery} handleSearch={handleSearch} />
         {hasTodos && <TodoProgress />}
-        <TodoMenu
-          isMenuOpen={isMenuOpen}
-          setShowHistory={setShowHistory}
-          showHistory={showHistory}
-          setIsFilteredByCompleted={setIsFilteredByCompleted}
-          isFilteredByCompleted={isFilteredByCompleted}
-          sortPriority={sortPriority}
-          setSortPriority={setSortPriority}
-        />
+        <TodoMenu isMenuOpen={isMenuOpen} setFilteredTodos={setFilteredTodos} />
         <AllTagsList
           filteredTodos={filteredTodos}
           selectedTagIds={selectedTagIds}
