@@ -7,9 +7,9 @@ const Title = ({ status, title, isSaving }) => {
       case STATUS.VIEW:
         return title;
       case STATUS.EDIT:
-        return "Edit Todo";
+        return "Edit To-do";
       case STATUS.ADD:
-        return "Add Todo";
+        return "Add To-do";
       default:
         return "";
     }
