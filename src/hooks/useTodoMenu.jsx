@@ -52,6 +52,8 @@ const useTodoMenu = (todos, setFilteredTodos) => {
 
     if (state.filterArchived) {
       updatedTodos = updatedTodos.filter((todo) => todo.archived);
+    } else {
+      updatedTodos = updatedTodos.filter((todo) => !todo.archived);
     }
 
     if (state.sortPriority !== PRIORITY_SORT.NONE) {

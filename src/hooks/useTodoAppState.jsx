@@ -27,8 +27,9 @@ const useTodoAppState = () => {
         todo.title.toLowerCase().includes(searchQuery.trim().toLowerCase())
       );
     }
-
-    setFilteredTodos(updatedTodos);
+    if (searchQuery || selectedTagIds.length) {
+      setFilteredTodos(updatedTodos);
+    }
   }, [todos, searchQuery, selectedTagIds]);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
