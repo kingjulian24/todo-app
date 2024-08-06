@@ -4,6 +4,8 @@
 
 A modern, feature-rich todo list application built with React.
 
+[Live Demo](https://jb-dev-todo-app.netlify.app/) 
+
 ## ScreenShots
 
 <img src="assets/screenshots/Screenshot 2024-08-05 at 3.21.00 PM.png" alt="Desktop Mode" width="600" />
