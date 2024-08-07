@@ -4,7 +4,7 @@
 
 A modern, feature-rich todo list application built with React.
 
-[Live Demo](https://jb-dev-todo-app.netlify.app/) 
+[Live Demo](https://jb-dev-todo-app.netlify.app/)
 
 ## ScreenShots
 
@@ -47,6 +47,26 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
    ```
    npm start
    ```
+
+## End-to-End Tests
+
+This project uses Cypress for end-to-end testing. To run Cypress tests, use:
+
+### Open Cypress Test Runner:
+
+```bash
+npm run cy:open
+```
+
+This command opens the Cypress Test Runner UI, where you can interactively run and debug your tests.
+
+### Run Cypress Tests in Headless Mode:
+
+```bash
+npm run cy:run
+```
+
+This command runs Cypress tests in the command line without opening the Test Runner UI, useful for continuous integration (CI) pipelines.
 
 ## Available Scripts
 
