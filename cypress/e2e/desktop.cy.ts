@@ -67,7 +67,7 @@ describe("Desktop version", () => {
     });
   });
 
-  it.only("should show progress", () => {
+  it("should show progress", () => {
     cy.fixture("todos").then((todos) => {
       cy.addMultipleTodos(todos);
       cy.get("#progress-bar").contains("0%");
