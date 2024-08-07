@@ -21,11 +21,11 @@ const Todo = ({ todo, onEdit }) => {
     ? "text-green-500 text-xl mr-4"
     : "text-gray-500 text-xl mr-4";
   const archiveClass = isArchived
-    ? "text-green-500 text-xl"
-    : "text-gray-500 text-xl";
+    ? "text-green-500 text-xl archive-btn"
+    : "text-gray-500 text-xl archive-btn";
   return (
-    <div className="flex items-center bg-white p-4 rounded-lg shadow">
-      <button>
+    <div className="todo-item flex items-center bg-white p-4 rounded-lg shadow">
+      <button className="toggle-complete-btn">
         <FaCheckCircle
           className={checkClass}
           onClick={() => {

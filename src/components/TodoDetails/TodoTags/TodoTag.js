@@ -10,10 +10,15 @@ const TodoTag = ({
   selectedTagIds,
 }) => {
   const handleClick = (id) => {
-    if (selectedTagIds.includes(id)) {
-      setSelectedTagIds(selectedTagIds.filter((tagId) => tagId !== id));
+    // todo: fix this bug, overlap events somehow.
+    if (status !== STATUS.VIEW) {
+      handleTagRemove(id);
     } else {
-      setSelectedTagIds([...selectedTagIds, id]);
+      if (selectedTagIds.includes(id)) {
+        setSelectedTagIds(selectedTagIds.filter((tagId) => tagId !== id));
+      } else {
+        setSelectedTagIds([...selectedTagIds, id]);
+      }
     }
   };
   const isSelected = selectedTagIds && selectedTagIds.includes(tag.id);
@@ -25,7 +30,7 @@ const TodoTag = ({
         <button
           type="button"
           onClick={() => handleTagRemove(tag.id)}
-          className="ml-2 text-red-500"
+          className=" text-red-500"
         >
           <FaTrash size="12" />
         </button>
@@ -38,9 +43,12 @@ export const Tag = ({ tag, onClick, isSelected }) => {
   return (
     <button
       className={`px-2 py-1 rounded flex items-center ${
-        isSelected ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
+        isSelected
+          ? "bg-blue-500 text-white  todo-tag"
+          : "bg-gray-200 text-gray-700  todo-tag"
       }`}
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
         onClick(tag.id);
       }}
     >

@@ -17,6 +17,7 @@ const TodoProgress = () => {
       <h2 className="text-lg font-semibold mb-2">Progress</h2>
       <div className="bg-gray-200 rounded-lg relative">
         <div
+          id="progress-bar"
           className="bg-green-400 p-5 rounded-lg text-center"
           style={{ width: percentage + "%", backgroundColor }}
         >

@@ -6,7 +6,7 @@ const AddTodoButton = ({ toggleAdding, shouldPulse }) => {
     : "bg-green-500 rounded-full z-10 shadow-xl";
   return (
     <div className="absolute bottom-5 left-1/2 -translate-x-1/2 ml-1">
-      <button onClick={toggleAdding} className={btnClass}>
+      <button id={"add-todo-btn"} onClick={toggleAdding} className={btnClass}>
         <svg
           className="w-16 h-16 text-white "
           viewBox="0 0 24 24"

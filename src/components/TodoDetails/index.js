@@ -35,10 +35,14 @@ const TodoDetails = ({
   } = useTodoDetailsState(onClose, initialTodo);
 
   return (
-    <div className={className}>
+    <div id="todo-details" className={className}>
       <div className="flex justify-between items-center mb-4">
         <Title status={status} title={todo.title} isSaving={isSaving} />
-        <button onClick={onClose} className="text-gray-500">
+        <button
+          id="close-add-todo-btn"
+          onClick={onClose}
+          className="text-gray-500"
+        >
           <AiOutlineClose className="text-xl" />
         </button>
       </div>
@@ -144,6 +148,7 @@ function TodoUpdateForm({
       ) : (
         <button
           type="submit"
+          id="save-todo-btn"
           className="w-full  bg-green-500 text-white px-4 py-2 rounded"
         >
           Save

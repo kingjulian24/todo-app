@@ -50,8 +50,10 @@ function TagInput({ newTag, setNewTag, handleTagAdd }) {
         onChange={(e) => setNewTag(e.target.value)}
         placeholder="Add a tag"
         className="flex-grow p-2 border rounded"
+        name="tag"
       />
       <button
+        id="add-tag-btn"
         type="button"
         onClick={handleTagAdd}
         className="bg-blue-500 text-white px-4 py-2 rounded"
