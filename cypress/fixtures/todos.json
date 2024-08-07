@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Buy milk",
+    "desc": "Get milk from store",
+    "priority": "Medium",
+    "tag": "Shopping",
+    "comment": "Make sure to get whole milk"
+  },
+  {
+    "title": "Read a book",
+    "desc": "Finish reading 'The Great Gatsby'",
+    "priority": "High",
+    "tag": "Personal",
+    "comment": "Finish by end of the week"
+  },
+  {
+    "title": "Exercise",
+    "desc": "Go for a 30-minute run",
+    "priority": "Low",
+    "tag": "Health",
+    "comment": "Run in the park if the weather is nice"
+  }
+]
