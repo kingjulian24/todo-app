@@ -62,8 +62,10 @@ describe("Desktop version", () => {
 
       cy.get(".todo-tag").last().click();
       cy.get(".todo-tag").last().should("have.class", "bg-blue-500");
-      cy.get(".todo-tag").should("have.length", 1);
-      cy.get(".todo-tag").first().contains(data[1].tag);
+      cy.get(".todo-item").should("have.length", data.length - 1);
+      cy.get(".todo-tag").should("have.length", 2);
+      cy.get(".todo-tag").first().click();
+      cy.get(".todo-item").should("have.length", data.length);
     });
   });
 

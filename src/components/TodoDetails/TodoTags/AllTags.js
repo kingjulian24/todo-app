@@ -1,11 +1,13 @@
 import React, { useMemo } from "react";
 import { Tag } from "./TodoTag"; // Ensure this is correctly imported
+import { useTodoesContext } from "../../../hooks/TodoProvider";
 
-const AllTagsList = ({ filteredTodos, selectedTagIds, setSelectedTagIds }) => {
-  // Extract and deduplicate tags from filteredTodos
+const AllTagsList = ({ selectedTagIds, setSelectedTagIds }) => {
+  const todos = useTodoesContext();
+  // Extract and deduplicate tags from todos
   const allTags = useMemo(() => {
     const tagSet = new Set(); // Using a Set to ensure uniqueness
-    filteredTodos.forEach((todo) => {
+    todos.forEach((todo) => {
       todo.tags.forEach((tag) => {
         if (!tagSet.has(tag.id)) {
           tagSet.add(tag.id);
@@ -15,14 +17,14 @@ const AllTagsList = ({ filteredTodos, selectedTagIds, setSelectedTagIds }) => {
     return Array.from(tagSet)
       .map((tagId) => {
         // Find the tag object for each tagId
-        for (const todo of filteredTodos) {
+        for (const todo of todos) {
           const tag = todo.tags.find((tag) => tag.id === tagId);
           if (tag) return tag;
         }
         return null;
       })
       .filter((tag) => tag !== null); // Remove any null values
-  }, [filteredTodos]);
+  }, [todos]);
 
   const handleClick = (id) => {
     if (selectedTagIds.includes(id)) {

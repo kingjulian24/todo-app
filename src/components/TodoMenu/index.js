@@ -3,18 +3,12 @@ import { FaRegCircle, FaArchive, FaTrashAlt } from "react-icons/fa";
 import { GoHistory } from "react-icons/go";
 import { IoArchiveOutline } from "react-icons/io5";
 import MenuItem from "./MenuItem";
-import {
-  useTodoesContext,
-  useTodoesDispatchContext,
-} from "../../hooks/TodoProvider";
+import { useTodoesDispatchContext } from "../../hooks/TodoProvider";
 import { ActionTypes } from "../../reducers/todoReducer";
 import SortPriorityIcon from "./SortPriorityIcon";
 import { PRIORITY_SORT } from "../../hooks/useTodoMenu";
-import useTodoMenu from "../../hooks/useTodoMenu";
 
-const TodoMenu = ({ isMenuOpen, setFilteredTodos }) => {
-  const todos = useTodoesContext();
-  const { state, actions } = useTodoMenu(todos, setFilteredTodos);
+const TodoMenu = ({ isMenuOpen, state, actions }) => {
   const dispatch = useTodoesDispatchContext();
   const historyTitle = state.filterArchived ? "Hide History" : "Show History";
   const completedTitle = state.filterCompleted ? "Show All" : "Hide Completed";

@@ -17,6 +17,8 @@ const TodoApp = () => {
     searchQuery,
     filteredTodos,
     selectedTagIds,
+    menuState,
+    menuActions,
     toggleMenu,
     toggleAddEdit,
     toggleAdding,
@@ -33,9 +35,13 @@ const TodoApp = () => {
         <ToggleMenuButton toggleMenu={toggleMenu} />
         <TodoSearch searchQuery={searchQuery} handleSearch={handleSearch} />
         {hasTodos && <TodoProgress />}
-        <TodoMenu isMenuOpen={isMenuOpen} setFilteredTodos={setFilteredTodos} />
+        <TodoMenu
+          isMenuOpen={isMenuOpen}
+          setFilteredTodos={setFilteredTodos}
+          state={menuState}
+          actions={menuActions}
+        />
         <AllTagsList
-          filteredTodos={filteredTodos}
           selectedTagIds={selectedTagIds}
           setSelectedTagIds={setSelectedTagIds}
         />
