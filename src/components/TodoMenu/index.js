@@ -37,7 +37,7 @@ const TodoMenu = ({ isMenuOpen, state, actions }) => {
 
   return (
     <nav
-      className={`space-y-2 lg:block ${isMenuOpen ? "block" : "hidden"} mt-4 border-b-gray-300 border-b-2 lg:pb-4`}
+      className={`space-y-2 lg:block ${isMenuOpen ? "block" : "hidden"} mt-4  lg:pb-4`}
     >
       <MenuItem
         Icon={false}

@@ -42,6 +42,7 @@ const TodoApp = () => {
           actions={menuActions}
         />
         <AllTagsList
+          isMenuOpen={isMenuOpen}
           selectedTagIds={selectedTagIds}
           setSelectedTagIds={setSelectedTagIds}
         />
