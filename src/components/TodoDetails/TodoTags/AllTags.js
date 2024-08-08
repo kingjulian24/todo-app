@@ -12,16 +12,16 @@ const AllTagsList = ({ isMenuOpen, selectedTagIds, setSelectedTagIds }) => {
     const tagSet = new Set(); // Using a Set to ensure uniqueness
     todos.forEach((todo) => {
       todo.tags.forEach((tag) => {
-        if (!tagSet.has(tag.id)) {
-          tagSet.add(tag.id);
+        if (!tagSet.has(tag.name)) {
+          tagSet.add(tag.name);
         }
       });
     });
     return Array.from(tagSet)
-      .map((tagId) => {
-        // Find the tag object for each tagId
+      .map((tagName) => {
+        // Find the tag object for each tagName
         for (const todo of todos) {
-          const tag = todo.tags.find((tag) => tag.id === tagId);
+          const tag = todo.tags.find((tag) => tag.name === tagName);
           if (tag) return tag;
         }
         return null;

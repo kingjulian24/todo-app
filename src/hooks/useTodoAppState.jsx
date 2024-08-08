@@ -23,11 +23,22 @@ const useTodoAppState = () => {
     }
 
     if (selectedTagIds.length) {
-      updatedTodos = updatedTodos.filter((todo) => {
-        return selectedTagIds.some((tagId) =>
-          todo.tags.some((tag) => tag.id === tagId)
+      // Collect all tags from todos
+      const allTags = [];
+      updatedTodos.forEach((todo) => allTags.push(...todo.tags));
+
+      // Find names of tags that match the selectedTagIds
+      const selectedTagNames = new Set(
+        allTags
+          .filter((tag) => selectedTagIds.includes(tag.id))
+          .map((tag) => tag.name)
+      );
+      if (selectedTagNames) {
+        // Filter todos where any tag's name matches the selected tag names
+        updatedTodos = updatedTodos.filter((todo) =>
+          todo.tags.some((tag) => selectedTagNames.has(tag.name))
         );
-      });
+      }
     }
 
     if (menuState.filterCompleted) {

@@ -61,12 +61,14 @@ const closeTodoForm = () => cy.get("#close-add-todo-btn").click();
 
 Cypress.Commands.add("addTodo", (options: TodoOptions) => {
   cy.get("#add-todo-btn").click();
+  cy.get("#todo-details").contains("Show detailed form").click();
   fillTodoForm(options);
   closeTodoForm();
 });
 
 Cypress.Commands.add("addMultipleTodos", (todos: TodoOptions[]) => {
   cy.get("#add-todo-btn").click();
+  cy.get("#todo-details").contains("Show detailed form").click();
   todos.forEach(fillTodoForm);
   cy.get("#close-add-todo-btn").click();
 });

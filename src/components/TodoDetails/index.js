@@ -8,6 +8,9 @@ import TodoTags from "./TodoTags";
 import TodoComments from "./TodoComments";
 import TodoCheckBox from "./TodoCheckBox";
 import { STATUS } from "../../hooks/useTodoDetailsState";
+import QuickTodoInput from "./QuickTodoInput";
+import MenuItem from "../TodoMenu/MenuItem";
+import { BiDetail } from "react-icons/bi";
 
 const TodoDetails = ({
   onClose,
@@ -32,6 +35,9 @@ const TodoDetails = ({
     handleEditStatus,
     handleTodoDelete,
     isSaving,
+    showQuickTodo,
+    setShowQuickTodo,
+    handleQuickTodo,
   } = useTodoDetailsState(onClose, initialTodo);
 
   return (
@@ -75,23 +81,44 @@ const TodoDetails = ({
           </button>
         </div>
       ) : (
-        <TodoUpdateForm
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          todo={todo}
-          setNewTag={setNewTag}
-          handleTagRemove={handleTagRemove}
-          handleTagAdd={handleTagAdd}
-          newTag={newTag}
-          handleCommentAdd={handleCommentAdd}
-          handleCommentRemove={handleCommentRemove}
-          setNewComment={setNewComment}
-          newComment={newComment}
-          handleTodoDelete={handleTodoDelete}
-          status={status}
-          setSelectedTagIds={setSelectedTagIds}
-          selectedTagIds={selectedTagIds}
-        />
+        <>
+          {/* Add the QuickTodoInput component */}
+          {showQuickTodo && status !== STATUS.EDIT && (
+            <QuickTodoInput
+              tag="test" // Use the first selected tag or adjust as needed
+              onAdd={handleQuickTodo}
+            />
+          )}
+          <div className="mb-4">
+            {status !== STATUS.EDIT && (
+              <MenuItem
+                title={showQuickTodo ? "Show detailed form" : "Show Quick form"}
+                onClick={() => setShowQuickTodo((p) => !p)}
+              >
+                <BiDetail />
+              </MenuItem>
+            )}
+          </div>
+          {(!showQuickTodo || status === STATUS.EDIT) && (
+            <TodoUpdateForm
+              handleSubmit={handleSubmit}
+              handleChange={handleChange}
+              todo={todo}
+              setNewTag={setNewTag}
+              handleTagRemove={handleTagRemove}
+              handleTagAdd={handleTagAdd}
+              newTag={newTag}
+              handleCommentAdd={handleCommentAdd}
+              handleCommentRemove={handleCommentRemove}
+              setNewComment={setNewComment}
+              newComment={newComment}
+              handleTodoDelete={handleTodoDelete}
+              status={status}
+              setSelectedTagIds={setSelectedTagIds}
+              selectedTagIds={selectedTagIds}
+            />
+          )}
+        </>
       )}
     </div>
   );

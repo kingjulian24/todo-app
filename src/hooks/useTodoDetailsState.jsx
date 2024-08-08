@@ -35,6 +35,7 @@ const useTodoDetailsState = (onClose, initialTodo) => {
   const isEditing = Boolean(initialTodo);
   const [status, setStatus] = useState(isEditing ? STATUS.VIEW : STATUS.ADD);
   const [isSaving, setIsSaving] = useAutoSave(1000);
+  const [showQuickTodo, setShowQuickTodo] = useState(true);
 
   useEffect(() => {
     if (initialTodo) {
@@ -124,6 +125,15 @@ const useTodoDetailsState = (onClose, initialTodo) => {
     }
   };
 
+  const handleQuickTodo = ({ title, tag }) => {
+    const newTagObject = { id: uuidv4(), name: tag };
+    const newTodo = { ...todo, id: uuidv4(), title, tags: [newTagObject] };
+    dispatch({
+      type: ActionTypes.ADD,
+      payload: newTodo,
+    });
+  };
+
   return {
     handleChange,
     handleCommentAdd,
@@ -140,6 +150,9 @@ const useTodoDetailsState = (onClose, initialTodo) => {
     handleEditStatus,
     handleTodoDelete,
     isSaving,
+    showQuickTodo,
+    setShowQuickTodo,
+    handleQuickTodo,
   };
 };
 
